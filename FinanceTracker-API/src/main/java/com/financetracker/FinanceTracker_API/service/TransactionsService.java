@@ -17,6 +17,10 @@ public class TransactionsService {
         return transactionsRepository.findAll();
     }
 
+    public List<Transactions> getTransactionsByUserId(Long userId) {
+        return transactionsRepository.findByUserId(userId);
+    }
+
     public void saveTransactions(Transactions transactions) {
         transactionsRepository.save(transactions);
     }

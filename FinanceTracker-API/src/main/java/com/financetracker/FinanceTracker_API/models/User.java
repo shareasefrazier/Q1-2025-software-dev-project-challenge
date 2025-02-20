@@ -1,12 +1,21 @@
 package com.financetracker.FinanceTracker_API.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
 
 @Entity
 public class User extends AbstractEntity{
 
     private String username;
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Transactions> transactions;
 
     //Constructors
 
@@ -32,5 +41,13 @@ public class User extends AbstractEntity{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Transactions> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transactions> transactions) {
+        this.transactions = transactions;
     }
 }

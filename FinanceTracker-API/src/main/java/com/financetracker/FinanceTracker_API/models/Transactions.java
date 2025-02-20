@@ -1,6 +1,9 @@
 package com.financetracker.FinanceTracker_API.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 import java.math.BigDecimal;
 
@@ -10,6 +13,10 @@ public class Transactions extends AbstractEntity{
     private String description;
     private BigDecimal amount;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     //Constructors
 
@@ -37,4 +44,11 @@ public class Transactions extends AbstractEntity{
         this.amount = amount;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
